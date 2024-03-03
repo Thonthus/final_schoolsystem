@@ -33,16 +33,12 @@ Route::get('/', function () {
 
 
 
-
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
 
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 
-Route::middleware(['auth'])->group(function () {
-    
-});
 
 
 Route::middleware(['auth', 'admin'])->group(function () {
@@ -71,9 +67,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::post('/editstudent', [StudentDataController::class, 'updatestudent']);
     //studentInfoAdmin
     Route::get('/studentinfoAdmin', [StudentDataController::class, 'studentinfoadminview']);
-    //checkedshowiso
-    Route::get('/checkedrecordperson', [CheckedDataController::class, 'checkedshowiso']);
-
+    //checkedfind
+    Route::get('/findcheckedhistory', [CheckedDataController::class, 'checkedfindhistory']);
+    
 });
 
 Route::middleware(['auth', 'student'])->group(function () {
@@ -82,6 +78,4 @@ Route::middleware(['auth', 'student'])->group(function () {
     })->name('student.dashboard');
 
     Route::get('/studentcheckedhistory', [CheckedDataController::class, 'studentcheckedhistory']);
-
-
 });

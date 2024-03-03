@@ -128,7 +128,7 @@ class CheckedDataController extends Controller
 
     function studentcheckedhistory()
     {
-        $username = Auth::user()->username; 
+        $username = Auth::user()->username;
         $checkedData = CheckedData::with('student')
             ->whereHas('student', function ($query) use ($username) {
                 $query->where('student_id', $username);
@@ -138,14 +138,14 @@ class CheckedDataController extends Controller
         return view('studentcheckedshow', compact('checkedData'));
     }
 
-    function checkedshowiso(Request $request) {
-        $student_id = $request->student_id; 
-        $checkedData = CheckedData::with('student')
-            ->whereHas('student', function ($query) use ($student_id) {
-                $query->where('student_id', $student_id);
-            })
-            ->paginate(5);
-
-        return view('admincheckediso', compact('checkedData'));
+    function checkedfindhistory(Request $request)
+    {
+        $student_id = $request->student_id;
+        $data = CheckedData::where('student_id', $student_id)->with('student')->get();
+        return view('checkedfind', compact('data'));
     }
+
+
+
+   
 }

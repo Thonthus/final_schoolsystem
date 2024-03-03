@@ -2,7 +2,7 @@
 @section('title', 'เมนูหลัก')
 @section('content')
 
-    <div class="mt-4" style="display:flex;">
+    <div class="mt-4 mb-4" style="display:flex;">
         <div class="card m-auto" style="width: 90%;  background-color: rgba(233, 233, 233, 0.7);">
             <div class="card-body">
                 <div class="container mt-3">
@@ -108,9 +108,9 @@
                                 </div>
                             </a>
                         </div>
-
+                       
                         <div class="col-xl-3 col-sm-6 mb-5">
-                            <a href="/checkedrecordperson" style="text-decoration: none;">
+                            <a href="/findcheckedhistory" style="text-decoration: none;">
                                 <div class="bg-white rounded shadow-sm py-5 px-4"><img
                                         src="{{ asset('images/scanout.png') }}" alt="" width="100"
                                         class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
@@ -121,6 +121,7 @@
                                 </div>
                             </a>
                         </div>
+                        
 
                         <div class="col-xl-3 col-sm-6 mb-5">
                             <a href="/addadmin" style="text-decoration: none;">
