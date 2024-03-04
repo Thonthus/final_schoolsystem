@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\CheckedDataController;
+use App\Http\Controllers\ClassroomDataController;
 use App\Http\Controllers\StudentDataController;
 use App\Http\Controllers\UserController;
+use App\Models\ClassroomData;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 /*
@@ -69,13 +71,26 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/studentinfoAdmin', [StudentDataController::class, 'studentinfoadminview']);
     //checkedfind
     Route::get('/findcheckedhistory', [CheckedDataController::class, 'checkedfindhistory']);
-    
+    //classroomManage
+    Route::get('/classManage', [ClassroomDataController::class, 'classromdatashow']);
+    //classroomCreate
+    Route::get('/classroomcreate',[ClassroomDataController::class, 'classcreate'])->name('classroomecreate');
+    //classroomInsert
+    Route::post('/classroominsert',[ClassroomDataController::class, 'classinsert'])->name('classroominsert');
+    //classroomEdit
+    Route::get('/classroomedit/{class_id}',[ClassroomDataController::class, 'classedit'])->name('classroomedit');
+    //classroomUpdate
+    Route::post('/classroomupdate/{class_id}',[ClassroomDataController::class, 'classupdate'])->name('classroomupdate');
+    //classroomDelete
+    Route::get('/classroomdel/{class_id}',[ClassroomDataController::class, 'classdel'])->name('classroomdelete');
 });
 
 Route::middleware(['auth', 'student'])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('student.dashboard');
-
+    //personalinfo
+    Route::get('/studentinfo', [StudentDataController::class, 'studentinfoview']);
+    //ScanHistory
     Route::get('/studentcheckedhistory', [CheckedDataController::class, 'studentcheckedhistory']);
 });

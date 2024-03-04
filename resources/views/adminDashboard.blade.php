@@ -47,7 +47,7 @@
                         <div class="col-xl-3 col-sm-6 mb-5">
                             <a href="/checkedrecords" style="text-decoration: none;">
                                 <div class="bg-white rounded shadow-sm py-5 px-4"><img
-                                        src="{{ asset('images/scanout.png') }}" alt="" width="100"
+                                        src="{{ asset('images/checkedInfo.png') }}" alt="" width="100"
                                         class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
                                     <h5 class="mb-0">รายการบันทึกเวลาเข้า - ออกโรงเรียน</h5>
                                     <span class="small text-uppercase text-muted">
@@ -60,7 +60,7 @@
                         <div class="col-xl-3 col-sm-6 mb-5">
                             <a href="/addstudent" style="text-decoration: none;">
                                 <div class="bg-white rounded shadow-sm py-5 px-4"><img
-                                        src="{{ asset('images/scanout.png') }}" alt="" width="100"
+                                        src="{{ asset('images/addstudent.png') }}" alt="" width="100"
                                         class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
                                     <h5 class="mb-0">เพิ่มข้อมูลนักเรียน</h5>
                                     <span class="small text-uppercase text-muted">
@@ -73,7 +73,7 @@
                         <div class="col-xl-3 col-sm-6 mb-5">
                             <a href="/storeImage" style="text-decoration: none;">
                                 <div class="bg-white rounded shadow-sm py-5 px-4"><img
-                                        src="{{ asset('images/scanout.png') }}" alt="" width="100"
+                                        src="{{ asset('images/editImg.png') }}" alt="" width="100"
                                         class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
                                     <h5 class="mb-0">เพิ่ม/แก้ไขรูปภาพนักเรียน</h5>
                                     <span class="small text-uppercase text-muted">
@@ -86,7 +86,7 @@
                         <div class="col-xl-3 col-sm-6 mb-5">
                             <a href="/editstudent" style="text-decoration: none;">
                                 <div class="bg-white rounded shadow-sm py-5 px-4"><img
-                                        src="{{ asset('images/scanout.png') }}" alt="" width="100"
+                                        src="{{ asset('images/editStudentinfo.png') }}" alt="" width="100"
                                         class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
                                     <h5 class="mb-0">แก้ไขข้อมูลนักเรียน</h5>
                                     <span class="small text-uppercase text-muted">
@@ -99,9 +99,9 @@
                         <div class="col-xl-3 col-sm-6 mb-5">
                             <a href="/studentinfoAdmin" style="text-decoration: none;">
                                 <div class="bg-white rounded shadow-sm py-5 px-4"><img
-                                        src="{{ asset('images/scanout.png') }}" alt="" width="100"
+                                        src="{{ asset('images/personalInfosearch.png') }}" alt="" width="100"
                                         class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
-                                    <h5 class="mb-0">ข้อมูลนักเรียนรายบุคคล</h5>
+                                    <h5 class="mb-0">ค้นหาข้อมูลนักเรียนรายบุคคล</h5>
                                     <span class="small text-uppercase text-muted">
                                         กดที่นี่
                                     </span>
@@ -112,7 +112,7 @@
                         <div class="col-xl-3 col-sm-6 mb-5">
                             <a href="/findcheckedhistory" style="text-decoration: none;">
                                 <div class="bg-white rounded shadow-sm py-5 px-4"><img
-                                        src="{{ asset('images/scanout.png') }}" alt="" width="100"
+                                        src="{{ asset('images/checkedSearch.png') }}" alt="" width="100"
                                         class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
                                     <h5 class="mb-0">ประวัติบันทึกเวลาเข้า - ออกโรงเรียนรายบุคคล</h5>
                                     <span class="small text-uppercase text-muted">
@@ -122,11 +122,23 @@
                             </a>
                         </div>
                         
+                        <div class="col-xl-3 col-sm-6 mb-5">
+                            <a href="/classManage" style="text-decoration: none;">
+                                <div class="bg-white rounded shadow-sm py-5 px-4"><img
+                                        src="{{ asset('images/classroomManage.png') }}" alt="" width="100"
+                                        class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+                                    <h5 class="mb-0">จัดการข้อมูลห้องเรียน</h5>
+                                    <span class="small text-uppercase text-muted">
+                                        กดที่นี่
+                                    </span>
+                                </div>
+                            </a>
+                        </div>
 
                         <div class="col-xl-3 col-sm-6 mb-5">
                             <a href="/addadmin" style="text-decoration: none;">
                                 <div class="bg-white rounded shadow-sm py-5 px-4"><img
-                                        src="{{ asset('images/scanout.png') }}" alt="" width="100"
+                                        src="{{ asset('images/addAdmin.png') }}" alt="" width="100"
                                         class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
                                     <h5 class="mb-0">เพิ่มผู้ดูแลระบบ</h5>
                                     <span class="small text-uppercase text-muted">

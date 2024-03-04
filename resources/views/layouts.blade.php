@@ -11,14 +11,14 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
-    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/953/953610.png" type="image/x-icon">
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2602/2602414.png" type="image/x-icon">
 
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary py-4" data-bs-theme="dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="/">BanNongJingleBell School</a>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary py-0" data-bs-theme="dark">
+        <div class="container-fluid py-4"  style="background-color: rgb(36, 91, 180)">
+            <a class="navbar-brand" href="/"><h2>BanNongJingleBell School</h2></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -36,6 +36,27 @@
                             <a class="nav-link"
                                 href="{{ Auth::user()->role == 'admin' ? '/dashboardAdmin' : '/dashboard' }}">เมนูหลัก</a>
                         </li>
+
+                        @if (Auth::user()->role == 'admin')
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"> Hello, {{ Auth::user()->username }}</a>
+                            </li>
+                        @else
+                            @php
+                                $studentData = \App\Models\StudentData::where(
+                                    'student_id',
+                                    Auth::user()->username,
+                                )->first();
+                            @endphp
+
+                            @if ($studentData)
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">{{ $studentData->firstname }}
+                                        {{ $studentData->lastname }}</a>
+                                </li>
+                            @endif
+                        @endif
+
                         <li class="nav-item">
                             <a class="nav-link" href="#" onclick="return confirm('ต้องการออกจากระบบใช่หรือไม่ ?')">
                                 <form action="{{ route('logout') }}" method="POST">
@@ -66,7 +87,7 @@
 
     body {
         font-family: 'Bai Jamjuree', sans-serif;
-        background-image: url('images/FinalStudentCareBG.png');
+        background-image: url('{{ asset("images/FinalStudentCareBG.png") }}');
         background-size: cover;
         background-repeat: no-repeat;
         background-attachment: fixed;

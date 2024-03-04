@@ -14,8 +14,8 @@ class CounselorData extends Model
 
     protected $fillable = ['counselor_id', 'counselor_name', 'counselor_tel'];
 
-    public function class_coun()
-    {
+
+    public function classroom(){
         return $this->hasOne(ClassroomData::class, 'counselor_id');
     }
 

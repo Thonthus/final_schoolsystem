@@ -16,12 +16,12 @@ return new class extends Migration
             $table->string('level_id');
             $table->string('class_grade');
             $table->string('class_num');
-            $table->string('counselor_id');
+            $table->string('counselor_id')->nullable();
             $table->timestamps();
 
 
-            $table->foreign('counselor_id')->references('counselor_id')->on('counselor_data')->onDelete('cascade');
-            $table->foreign('level_id')->references('level_id')->on('level_data')->onDelete('cascade');
+            $table->foreign('counselor_id')->references('counselor_id')->on('counselor_data')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('level_id')->references('level_id')->on('level_data')->onDelete('cascade')->onUpdate('cascade');
         });
     }
     

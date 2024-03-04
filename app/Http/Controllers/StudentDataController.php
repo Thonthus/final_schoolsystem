@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class StudentDataController extends Controller
 {
@@ -134,13 +135,69 @@ class StudentDataController extends Controller
         return redirect()->back()->with('success', 'แก้ไขข้อมูลส่วนตัวและบัญชีผู้ใช้นักเรียนรหัสประจำตัว ' . $request->student_id . ' สำเร็จ');
     }
 
-    // function studentinfoadminview(Request $request)
-    // {
-    //     $student_id = $request->student_id;
-    //     $student = StudentData::with(['class_info', 'classroom.counselors'])->where('student_id', $student_id)->get();
+    function studentinfoadminview(Request $request)
+    {
+        $student_id = $request->student_id;
+        $student = DB::table('student_data')->where('student_id', $student_id)->first();
+
+        if ($student) {
+            $classroom = DB::table('classroom_data')->where('class_id', $student->class_id)->first();
+
+            if ($classroom) {
+                $counselor = DB::table('counselor_data')->where('counselor_id', $classroom->counselor_id)->first();
+                $level = DB::table('level_data')->where('level_id', $classroom->level_id)->first();
+            }
+        }
+
+        if ($student && $classroom) {
+            $student->classroom = $classroom;
+
+            if ($counselor) {
+                $student->classroom->counselor = $counselor;
+            }
 
 
+            if (isset($level)) {
+                $student->classroom->level = $level;
+            }
+        }
 
-    //     return view('studentInfoAdmin', compact('student'));
-    // }
+        return view('studentInfoAdmin', compact('student'));
+    }
+
+    public function studentinfoview()
+    {
+        if (auth()->check()) {
+            $username = auth()->user()->username;
+            $student_id = $username;
+
+            $student = DB::table('student_data')->where('student_id', $student_id)->first();
+
+            if ($student) {
+                $classroom = DB::table('classroom_data')->where('class_id', $student->class_id)->first();
+
+                if ($classroom) {
+                    $counselor = DB::table('counselor_data')->where('counselor_id', $classroom->counselor_id)->first();
+                    $level = DB::table('level_data')->where('level_id', $classroom->level_id)->first();
+                }
+            }
+
+            if ($student && $classroom) {
+                $student->classroom = $classroom;
+
+                if ($counselor) {
+                    $student->classroom->counselor = $counselor;
+                }
+
+
+                if (isset($level)) {
+                    $student->classroom->level = $level;
+                }
+            }
+
+            return view('studentInfo', compact('student'));
+        } else {
+            redirect('/');
+        }
+    }
 }
