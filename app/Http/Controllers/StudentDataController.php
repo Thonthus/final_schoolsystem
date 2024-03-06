@@ -11,6 +11,12 @@ use Illuminate\Support\Facades\DB;
 
 class StudentDataController extends Controller
 {
+    function studentsdata()
+    {
+        $StudentsData = StudentData::paginate(10);
+        return view('adminShowStudent', compact('StudentsData'));
+    }
+
     function storeimageview()
     {
         return view('storeimg');
@@ -62,17 +68,17 @@ class StudentDataController extends Controller
         $validated = $request->validate(
             [
                 'student_id' => 'required|digits:5',
-                'class_id' => 'digits:5',
-                'number' => 'max:2',
+                'class_id' => 'required|digits:5',
+                'number' => 'required|max:2',
                 'firstname' => 'required|string|max:50',
                 'lastname' => 'required|string|max:50',
-                'nickname' => 'max:10',
-                'birthdate' => 'nullable|date',
-                'gender' => 'max:1',
+                'nickname' => 'required|max:10',
+                'birthdate' => 'required|date',
+                'gender' => 'required|max:1',
                 'personal_id' => 'required|digits:13',
-                'address' => 'nullable|string',
-                'phone' => 'max:10',
-                'email' => 'email',
+                'address' => 'required|string',
+                'phone' => 'required|max:10',
+                'email' => 'required|email',
             ],
 
         );
@@ -89,7 +95,7 @@ class StudentDataController extends Controller
         User::create($data);
 
         return redirect()->back()->with([
-            'success' => 'บักทึกข้อมูลและสร้างบัญชีผู้ใช้นักเรียนรหัสประจำตัว' . $request->student_id . ' สำเร็จ',
+            'success' => 'บักทึกข้อมูลและสร้างบัญชีผู้ใช้นักเรียนรหัสประจำตัว ' . $request->student_id . ' สำเร็จ',
         ]);;
     }
 
@@ -98,34 +104,35 @@ class StudentDataController extends Controller
         return view('editStudent');
     }
 
-
-    public function updatestudent(Request $request)
+    function editstudentpreup($student_id)
     {
-        $student_id = $request->student_id;
-        $student = StudentData::where('student_id', $student_id)->firstOrFail();
-        $user = User::where('username', $student_id)->firstOrFail();
+        $studentData = StudentData::where('student_id', $student_id)->first();
+        return view('editStudentInfo', compact('studentData'));
+    }
+
+
+    public function updatestudent(Request $request, $student_id)
+    {
+        $student = StudentData::where('student_id', $student_id)->first();
+        $user = User::where('username', $student_id)->first();
 
         $validated = $request->validate([
             'student_id' => 'required|digits:5',
-            'class_id' => 'nullable|string|max:5',
-            'number' => 'nullable|string',
+            'class_id' => 'required|string|max:5',
+            'number' => 'required|string',
             'firstname' => 'required|max:50',
             'lastname' => 'required|max:50',
-            'nickname' => 'max:10',
-            'birthdate' => 'nullable|date',
-            'gender' => 'max:1',
-            'personal_id' => 'max:13',
-            'address' => 'nullable|string',
-            'phone' => 'max:10',
-            'email' => 'nullable|email',
+            'nickname' => 'required|max:10',
+            'birthdate' => 'required|date',
+            'gender' => 'required|max:1',
+            'personal_id' => 'required|max:13',
+            'address' => 'required|string',
+            'phone' => 'required|max:10',
+            'email' => 'required|email',
         ]);
 
 
-        $filteredValidatedData = array_filter($validated, function ($value) {
-            return !is_null($value);
-        });
-
-        $student->update($filteredValidatedData);
+        $student->update($validated);
 
         if (!empty($request->personal_id)) {
             $user->password = Hash::make($request->personal_id);
@@ -135,8 +142,27 @@ class StudentDataController extends Controller
         return redirect()->back()->with('success', 'แก้ไขข้อมูลส่วนตัวและบัญชีผู้ใช้นักเรียนรหัสประจำตัว ' . $request->student_id . ' สำเร็จ');
     }
 
+    function studentdel($student_id)
+    {
+        DB::table('student_data')->where('student_id', $student_id)->delete();
+        DB::table('checked_data')->where('student_id', $student_id)->delete();
+        DB::table('users')->where('username', $student_id)->delete();
+        return redirect('/studentinfoAdmin');
+    }
+
     function studentinfoadminview(Request $request)
     {
+        if ($request->has('student_id')) {
+            $request->validate([
+                'student_id' => 'required|digits:5|exists:student_data,student_id',
+            ], [
+                'student_id.required' => 'กรุณากรอกรหัสประจำตัวนักเรียน',
+                'student_id.digits' => 'รหัสประจำตัวนักเรียนต้องเป็นตัวเลข 5 หลัก',
+                'student_id.exists' => 'ไม่พบข้อมูลนักเรียน ' . $request->student_id,
+            ]);
+        }
+
+
         $student_id = $request->student_id;
         $student = DB::table('student_data')->where('student_id', $student_id)->first();
 

@@ -57,6 +57,46 @@
                             </a>
                         </div>
 
+                        
+                        <div class="col-xl-3 col-sm-6 mb-5">
+                            <a href="/findcheckedhistory" style="text-decoration: none;">
+                                <div class="bg-white rounded shadow-sm py-5 px-4"><img
+                                        src="{{ asset('images/checkedSearch.png') }}" alt="" width="100"
+                                        class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+                                    <h5 class="mb-0">ประวัติบันทึกเวลาเข้า - ออกโรงเรียนรายบุคคล</h5>
+                                    <span class="small text-uppercase text-muted">
+                                        กดที่นี่
+                                    </span>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="col-xl-3 col-sm-6 mb-5">
+                            <a href="/studentinfoAdmin" style="text-decoration: none;">
+                                <div class="bg-white rounded shadow-sm py-5 px-4"><img
+                                        src="{{ asset('images/personalInfosearch.png') }}" alt="" width="100"
+                                        class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+                                    <h5 class="mb-0">ค้นหาข้อมูลนักเรียนรายบุคคล</h5>
+                                    <span class="small text-uppercase text-muted">
+                                        กดที่นี่
+                                    </span>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="col-xl-3 col-sm-6 mb-5">
+                            <a href="/studentsdata" style="text-decoration: none;">
+                                <div class="bg-white rounded shadow-sm py-5 px-4"><img
+                                        src="{{ asset('images/studentsAll.png') }}" alt="" width="100"
+                                        class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+                                    <h5 class="mb-0">รายชื่อนักเรียนทั้งหมด</h5>
+                                    <span class="small text-uppercase text-muted">
+                                        กดที่นี่
+                                    </span>
+                                </div>
+                            </a>
+                        </div>
+
                         <div class="col-xl-3 col-sm-6 mb-5">
                             <a href="/addstudent" style="text-decoration: none;">
                                 <div class="bg-white rounded shadow-sm py-5 px-4"><img
@@ -97,24 +137,11 @@
                         </div>
 
                         <div class="col-xl-3 col-sm-6 mb-5">
-                            <a href="/studentinfoAdmin" style="text-decoration: none;">
+                            <a href="/counselorManage" style="text-decoration: none;">
                                 <div class="bg-white rounded shadow-sm py-5 px-4"><img
-                                        src="{{ asset('images/personalInfosearch.png') }}" alt="" width="100"
+                                        src="{{ asset('images/counselorManage.png') }}" alt="" width="100"
                                         class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
-                                    <h5 class="mb-0">ค้นหาข้อมูลนักเรียนรายบุคคล</h5>
-                                    <span class="small text-uppercase text-muted">
-                                        กดที่นี่
-                                    </span>
-                                </div>
-                            </a>
-                        </div>
-                       
-                        <div class="col-xl-3 col-sm-6 mb-5">
-                            <a href="/findcheckedhistory" style="text-decoration: none;">
-                                <div class="bg-white rounded shadow-sm py-5 px-4"><img
-                                        src="{{ asset('images/checkedSearch.png') }}" alt="" width="100"
-                                        class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
-                                    <h5 class="mb-0">ประวัติบันทึกเวลาเข้า - ออกโรงเรียนรายบุคคล</h5>
+                                    <h5 class="mb-0">จัดการข้อมูลครูที่ปรึกษา</h5>
                                     <span class="small text-uppercase text-muted">
                                         กดที่นี่
                                     </span>

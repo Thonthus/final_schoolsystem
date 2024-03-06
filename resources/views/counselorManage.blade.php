@@ -1,5 +1,5 @@
 @extends('layouts')
-@section('title', 'จัดการข้อมูลห้องเรียน')
+@section('title', 'จัดการข้อมูลครูที่ปรึกษา')
 @section('content')
 
     <div class="mt-4 mb-4" style="display:flex;">
@@ -10,7 +10,7 @@
                     <div class="row text-center">
                         <div class="bg-white rounded shadow-sm py-3 px-4">
                             <div class="con" style="display: flex">
-                                <h2 class="m-auto text-primary-emphasis">จัดการข้อมูลห้องเรียน</h2>
+                                <h2 class="m-auto text-primary-emphasis">จัดการข้อมูลครูที่ปรึกษา</h2>
                             </div>
                         </div>
                     </div>
@@ -24,45 +24,32 @@
                                 <table class="table table-hover">
                                     <thead>
                                         <tr>
-                                            <th scope="col" class="text-primary-emphasis">รหัสห้องเรียน</th>
-                                            <th scope="col" class="text-primary-emphasis">ระดับ</th>
-                                            <th scope="col" class="text-primary-emphasis">ระดับชั้น</th>
-                                            <th scope="col" class="text-primary-emphasis">ห้อง</th>
                                             <th scope="col" class="text-primary-emphasis">รหัสอาจารย์ที่ปรึกษา</th>
+                                            <th scope="col" class="text-primary-emphasis">ชื่อ - นามสกุล</th>
+                                            <th scope="col" class="text-primary-emphasis">เบอร์โทรศัพท์</th>
                                             <th scope="col" class="text-primary-emphasis">แก้ไข</th>
                                             <th scope="col" class="text-primary-emphasis">ลบ</th>
+
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($ClassroomData as $data)
+                                        @foreach ($CounselorData as $data)
                                             <tr>
-                                                <td class="text-primary-emphasis">
-                                                    {{ str_pad($data->class_id, 5, '0', STR_PAD_LEFT) }}</td>
-                                                <td class="text-primary-emphasis">
-                                                    @if ($data->level_id == '01')
-                                                        ปฐมวัย
-                                                    @elseif($data->level_id == '02')
-                                                        ประถมศึกษา
-                                                    @elseif($data->level_id == '03')
-                                                        มัธยมศึกษา
-                                                    @endif
-                                                </td>
-                                                <td class="text-primary-emphasis">{{ $data->class_grade }}</td>
-                                                <td class="text-primary-emphasis">{{ $data->class_num }}</td>
-                                                <td class="text-primary-emphasis">{{ $data->counselor_id }}</td>
-
+                                                <td class="text-primary-emphasis">{{ str_pad($data->counselor_id, 4, '0', STR_PAD_LEFT) }}</td>
+                                                <td class="text-primary-emphasis">{{ $data->counselor_name }}</td>
+                                                <td class="text-primary-emphasis">{{ $data->counselor_tel }}</td>
 
                                                 <td>
-                                                    <a href="{{ route('classroomedit', ['class_id' => sprintf('%05d', $data->class_id)]) }}"
+                                                    <a href="{{ route('counseloredit', ['counselor_id' =>  str_pad($data->counselor_id, 4, '0', STR_PAD_LEFT) ]) }}"
                                                         class="btn btn-warning">
                                                         แก้ไข
                                                     </a>
                                                 </td>
 
                                                 <td>
-                                                    <a href="{{ route('classroomdelete', ['class_id' => sprintf('%05d', $data->class_id)]) }}"
+                                                    <a href="{{ route('counselordelete', ['counselor_id' =>  str_pad($data->counselor_id, 4, '0', STR_PAD_LEFT) ]) }}"
                                                         class="btn btn-danger"
-                                                        onclick="return confirm('ยืนยันการลบห้อง {{ str_pad($data->class_id, 5, '0', STR_PAD_LEFT) }}')">
+                                                        onclick="return confirm('ยืนยันการลบครูที่ปรึกษา {{ str_pad($data->counselor_id, 4, '0', STR_PAD_LEFT) }}')">
                                                         ลบ
                                                     </a>
                                                 </td>
@@ -74,17 +61,19 @@
                                 </table>
                             </div>
                             <div class="mt-2">
-                                {{ $ClassroomData->links() }}
+                                {{ $CounselorData->links() }}
                             </div>
                         </div>
                     </div>
                 </div>
-                <a href="{{ route('classroomecreate')}}" style="text-decoration: none">
+                
+                <a href="{{ route('counselorcreate')}}" style="text-decoration: none">
                     <div class="con mt-2" style="display: flex;">
                         <button type="button" class="btn btn-success m-auto"
-                            style="width: 60%">เพิ่มข้อมูลห้องเรียน</button>
+                            style="width: 60%">เพิ่มข้อมูลครูที่ปรึกษา</button>
                     </div>
                 </a>
+
             </div>
         </div>
     </div>

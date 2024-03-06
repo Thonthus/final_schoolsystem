@@ -11,7 +11,7 @@ class LoginController extends Controller
     
     public function showLoginForm()
     {
-        return view('auth.login'); // Make sure to create this view
+        return view('Auth.login'); 
     }
 
     // Handle login attempt

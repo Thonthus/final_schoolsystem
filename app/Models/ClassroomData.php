@@ -16,7 +16,7 @@ class ClassroomData extends Model
 
     public function students()
     {
-        return $this->hasMany(StudentData::class, 'class_id', 'class_id');
+        return $this->hasMany(StudentData::class, 'class_id');
     }
 
 

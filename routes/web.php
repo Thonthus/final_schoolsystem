@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\CheckedDataController;
 use App\Http\Controllers\ClassroomDataController;
+use App\Http\Controllers\CounselorDataController;
 use App\Http\Controllers\StudentDataController;
 use App\Http\Controllers\UserController;
 use App\Models\ClassroomData;
@@ -66,7 +67,12 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::post('/addstudent', [StudentDataController::class, 'storestudent']);
     //editStudent
     Route::get('/editstudent', [StudentDataController::class, 'editstudentview']);
-    Route::post('/editstudent', [StudentDataController::class, 'updatestudent']);
+    Route::get('/editstudentinfo/{student_id}', [StudentDataController::class, 'editstudentpreup']);
+    Route::post('/updatestudent/{student_id}', [StudentDataController::class, 'updatestudent']);
+    //deleteStudent
+    Route::get('/studentDel/{student_id}', [StudentDataController::class, 'studentdel'])->name('studentdelete');
+    //AllstudentsInfoAdmin
+    Route::get('/studentsdata', [StudentDataController::class, 'studentsdata']);
     //studentInfoAdmin
     Route::get('/studentinfoAdmin', [StudentDataController::class, 'studentinfoadminview']);
     //checkedfind
@@ -74,15 +80,27 @@ Route::middleware(['auth', 'admin'])->group(function () {
     //classroomManage
     Route::get('/classManage', [ClassroomDataController::class, 'classromdatashow']);
     //classroomCreate
-    Route::get('/classroomcreate',[ClassroomDataController::class, 'classcreate'])->name('classroomecreate');
+    Route::get('/classroomcreate', [ClassroomDataController::class, 'classcreate'])->name('classroomecreate');
     //classroomInsert
-    Route::post('/classroominsert',[ClassroomDataController::class, 'classinsert'])->name('classroominsert');
+    Route::post('/classroominsert', [ClassroomDataController::class, 'classinsert'])->name('classroominsert');
     //classroomEdit
-    Route::get('/classroomedit/{class_id}',[ClassroomDataController::class, 'classedit'])->name('classroomedit');
+    Route::get('/classroomedit/{class_id}', [ClassroomDataController::class, 'classedit'])->name('classroomedit');
     //classroomUpdate
-    Route::post('/classroomupdate/{class_id}',[ClassroomDataController::class, 'classupdate'])->name('classroomupdate');
+    Route::post('/classroomupdate/{class_id}', [ClassroomDataController::class, 'classupdate'])->name('classroomupdate');
     //classroomDelete
-    Route::get('/classroomdel/{class_id}',[ClassroomDataController::class, 'classdel'])->name('classroomdelete');
+    Route::get('/classroomdel/{class_id}', [ClassroomDataController::class, 'classdel'])->name('classroomdelete');
+    //counselorManage
+    Route::get('/counselorManage', [CounselorDataController::class, 'counselordatashow']);
+    //classroomCreate
+    Route::get('/counselorcreate', [CounselorDataController::class, 'counselorcreate'])->name('counselorcreate');
+    //classroomInsert
+    Route::post('/counselorinsert', [CounselorDataController::class, 'counselorinsert'])->name('counselorinsert');
+    //counselorEdit
+    Route::get('/counseloredit/{counselor_id}', [CounselorDataController::class, 'counseloredit'])->name('counseloredit');
+    //counselorUpdate
+    Route::post('/counselorupdate/{counselor_id}', [CounselorDataController::class, 'counselorupdate'])->name('counselorupdate');
+    //counselorDelete
+    Route::get('/counselordel/{counselor_id}', [CounselorDataController::class, 'counselordel'])->name('counselordelete');
 });
 
 Route::middleware(['auth', 'student'])->group(function () {

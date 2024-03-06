@@ -59,9 +59,6 @@
                     <div class="con mt-2" style="display: flex;">
                         <button type="submit" class="btn btn-success m-auto" style="width: 60%">บันทึก</button>
                     </div>
-                    <div class="con pt-2" style="display: flex;">
-                        <p class="m-auto text-success">{{ session('success') }}</p>
-                    </div>
 
                     @if ($errors->any())
                         <div class="alert alert-danger">

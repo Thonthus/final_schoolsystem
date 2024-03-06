@@ -31,6 +31,11 @@
                                         <button type="submit" class="btn btn-primary m-auto"
                                             style="width: 60%">ค้นหา</button>
                                     </div>
+                                    @error('student_id')
+                                        <div class="my-2">
+                                            <span class="text-danger">{{ $message }}</span>
+                                        </div>
+                                    @enderror
                                 </form>
                             </div>
                         </div>
@@ -58,29 +63,45 @@
                                             <table class="table table-bordered">
                                                 <tbody>
                                                     <tr>
-                                                        <th scope="row" style=" background-color: rgb(39, 74, 156); color:rgb(255, 255, 255);">รหัสนักศึกษา</th>
-                                                        <td style="color: rgb(27, 60, 136);"style="color: rgb(27, 60, 136);">{{ $student->student_id }}</td>
+                                                        <th scope="row"
+                                                            style=" background-color: rgb(39, 74, 156); color:rgb(255, 255, 255);">
+                                                            รหัสนักศึกษา</th>
+                                                        <td
+                                                            style="color: rgb(27, 60, 136);"style="color: rgb(27, 60, 136);">
+                                                            {{ $student->student_id }}</td>
                                                     </tr>
                                                     <tr>
-                                                        <th scope="row" style=" background-color: rgb(39, 74, 156); color:rgb(255, 255, 255);">ชื่อ - นามสกุล</th>
-                                                        <td style="color: rgb(27, 60, 136);">{{ $student->firstname }} {{ $student->lastname }}</td>
+                                                        <th scope="row"
+                                                            style=" background-color: rgb(39, 74, 156); color:rgb(255, 255, 255);">
+                                                            ชื่อ - นามสกุล</th>
+                                                        <td style="color: rgb(27, 60, 136);">{{ $student->firstname }}
+                                                            {{ $student->lastname }}</td>
                                                     </tr>
                                                     <tr>
-                                                        <th scope="row" style=" background-color: rgb(39, 74, 156); color:rgb(255, 255, 255);">ชั้น</th>
-                                                        <td style="color: rgb(27, 60, 136);">{{ $student->classroom->level->level_name }}ปีที่
+                                                        <th scope="row"
+                                                            style=" background-color: rgb(39, 74, 156); color:rgb(255, 255, 255);">
+                                                            ชั้น</th>
+                                                        <td style="color: rgb(27, 60, 136);">
+                                                            {{ $student->classroom->level->level_name }}ปีที่
                                                             {{ $student->classroom->class_grade }}/{{ $student->classroom->class_num }}
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <th scope="row" style=" background-color: rgb(39, 74, 156); color:rgb(255, 255, 255);">เลขที่</th>
+                                                        <th scope="row"
+                                                            style=" background-color: rgb(39, 74, 156); color:rgb(255, 255, 255);">
+                                                            เลขที่</th>
                                                         <td style="color: rgb(27, 60, 136);">{{ $student->number }}</td>
                                                     </tr>
                                                     <tr>
-                                                        <th scope="row" style=" background-color: rgb(39, 74, 156); color:rgb(255, 255, 255);">ชื่อเล่น</th>
+                                                        <th scope="row"
+                                                            style=" background-color: rgb(39, 74, 156); color:rgb(255, 255, 255);">
+                                                            ชื่อเล่น</th>
                                                         <td style="color: rgb(27, 60, 136);">{{ $student->nickname }}</td>
                                                     </tr>
                                                     <tr>
-                                                        <th scope="row" style=" background-color: rgb(39, 74, 156); color:rgb(255, 255, 255);">วันเกิด</th>
+                                                        <th scope="row"
+                                                            style=" background-color: rgb(39, 74, 156); color:rgb(255, 255, 255);">
+                                                            วันเกิด</th>
                                                         <td style="color: rgb(27, 60, 136);">
                                                             @php
                                                                 $birthdate = \Carbon\Carbon::parse($student->birthdate);
@@ -109,7 +130,9 @@
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <th scope="row" style=" background-color: rgb(39, 74, 156); color:rgb(255, 255, 255);">เพศ</th>
+                                                        <th scope="row"
+                                                            style=" background-color: rgb(39, 74, 156); color:rgb(255, 255, 255);">
+                                                            เพศ</th>
                                                         <td style="color: rgb(27, 60, 136);">
                                                             @if ($student->gender === 'M')
                                                                 ชาย
@@ -119,28 +142,43 @@
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <th scope="row" style=" background-color: rgb(39, 74, 156); color:rgb(255, 255, 255);">เลขประจำตัวประชาชน</th>
-                                                        <td style="color: rgb(27, 60, 136);">{{ $student->personal_id }}</td>
+                                                        <th scope="row"
+                                                            style=" background-color: rgb(39, 74, 156); color:rgb(255, 255, 255);">
+                                                            เลขประจำตัวประชาชน</th>
+                                                        <td style="color: rgb(27, 60, 136);">{{ $student->personal_id }}
+                                                        </td>
                                                     </tr>
                                                     <tr>
-                                                        <th scope="row" style=" background-color: rgb(39, 74, 156); color:rgb(255, 255, 255);">เบอร์โทรศัพท์</th>
+                                                        <th scope="row"
+                                                            style=" background-color: rgb(39, 74, 156); color:rgb(255, 255, 255);">
+                                                            เบอร์โทรศัพท์</th>
                                                         <td style="color: rgb(27, 60, 136);">{{ $student->phone }}</td>
                                                     </tr>
                                                     <tr>
-                                                        <th scope="row" style=" background-color: rgb(39, 74, 156); color:rgb(255, 255, 255);">อีเมล</th>
+                                                        <th scope="row"
+                                                            style=" background-color: rgb(39, 74, 156); color:rgb(255, 255, 255);">
+                                                            อีเมล</th>
                                                         <td style="color: rgb(27, 60, 136);">{{ $student->email }}</td>
                                                     </tr>
                                                     <tr>
-                                                        <th scope="row" style=" background-color: rgb(39, 74, 156); color:rgb(255, 255, 255);">ที่อยู่</th>
+                                                        <th scope="row"
+                                                            style=" background-color: rgb(39, 74, 156); color:rgb(255, 255, 255);">
+                                                            ที่อยู่</th>
                                                         <td style="color: rgb(27, 60, 136);">{{ $student->address }}</td>
                                                     </tr>
                                                     <tr>
-                                                        <th scope="row" style=" background-color: rgb(39, 74, 156); color:rgb(255, 255, 255);">ครูที่ปรึกษา</th>
-                                                        <td style="color: rgb(27, 60, 136);">{{ $student->classroom->counselor->counselor_name }}</td>
+                                                        <th scope="row"
+                                                            style=" background-color: rgb(39, 74, 156); color:rgb(255, 255, 255);">
+                                                            ครูที่ปรึกษา</th>
+                                                        <td style="color: rgb(27, 60, 136);">
+                                                            {{ $student->classroom->counselor->counselor_name }}</td>
                                                     </tr>
                                                     <tr>
-                                                        <th scope="row" style=" background-color: rgb(39, 74, 156); color:rgb(255, 255, 255);">เบอร์โทรศัพท์ครูที่ปรึกษา</th>
-                                                        <td style="color: rgb(27, 60, 136);">{{ $student->classroom->counselor->counselor_tel }}</td>
+                                                        <th scope="row"
+                                                            style=" background-color: rgb(39, 74, 156); color:rgb(255, 255, 255);">
+                                                            เบอร์โทรศัพท์ครูที่ปรึกษา</th>
+                                                        <td style="color: rgb(27, 60, 136);">
+                                                            {{ $student->classroom->counselor->counselor_tel }}</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -149,6 +187,11 @@
                                 </div>
 
                                 {{-- <pre>{{ json_encode($student, JSON_PRETTY_PRINT) }}</pre> --}}
+
+                                <div class="con mt-1" style="display: flex;">
+                                    <a href="{{ route('studentdelete', ['student_id' => $student->student_id]) }}"
+                                        class="btn btn-danger m-auto" style="width: 35%">ลบข้อมูล</a>
+                                </div>
 
                             </div>
                         </div>
@@ -177,5 +220,4 @@
         max-height: 98%;
         object-fit: cover;
     }
-
 </style>

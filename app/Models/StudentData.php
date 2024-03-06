@@ -16,7 +16,7 @@ class StudentData extends Model
 
     public function classroomData()
     {
-        return $this->belongsTo(ClassroomData::class, 'class_id', 'class_id');
+        return $this->belongsTo(ClassroomData::class, 'class_id');
     }
     public function checked_time()
     {

@@ -25,10 +25,10 @@ class ClassroomDataController extends Controller
         $data = $request->validate(
             [
                 'class_id' => 'required|digits:5',
-                'level_id' => 'digits:2',
+                'level_id' => 'required|digits:2',
                 'class_grade' => 'required|max:1',
                 'class_num' => 'required|max:2',
-                'counselor_id' => 'max:4'
+                'counselor_id' => 'required|digits:4'
             ]
         );
 
@@ -49,10 +49,10 @@ class ClassroomDataController extends Controller
         $data = $request->validate(
             [
                 'class_id' => 'required|digits:5',
-                'level_id' => 'digits:2',
+                'level_id' => 'required|digits:2',
                 'class_grade' => 'required|max:1',
                 'class_num' => 'required|max:2',
-                'counselor_id' => 'required|max:4'
+                'counselor_id' => 'required|digits:4'
             ]
         );
 
